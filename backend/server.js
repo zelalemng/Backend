@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
-const cors = require('cors');
+
 app.use(cors({
   origin: 'http://agentpro.onrender.com', // URL of your frontend
 }));
