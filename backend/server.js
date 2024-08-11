@@ -14,10 +14,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
+const corsOptions = {
+  origin: 'https://agentpro.onrender.com', // Your frontend's URL
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+};
 
-app.use(cors({
-  origin: 'http://agentpro.onrender.com', // URL of your frontend
-}));
+app.use(cors(corsOptions));
 
 app.use("/api/tables", require("./routes/tables"));
 app.use("/api/items", require("./routes/items"));
