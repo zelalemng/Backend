@@ -27,7 +27,7 @@ const corsOptions = {
     optionsSuccessStatus: 200
 } 
 app.use(cors(corsOptions));
-
+app.options('*', cors(corsOptions));
 app.use("/api/tables", require("./routes/tables"));
 app.use("/api/items", require("./routes/items"));
 app.use("/api/menus", require("./routes/menus"));
