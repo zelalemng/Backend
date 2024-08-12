@@ -22,7 +22,9 @@ const fetchuser =(req, res, next)=>{
     }
 }
 
-module.exports = fetchuser;
+module.exports = {
+    fetchuser
+};
 /**
  * Protect Route Middleware - Helper to protect routes based on login status
  const protect = asyncHandler(async (req, res, next) => {
