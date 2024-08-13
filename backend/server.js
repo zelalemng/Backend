@@ -17,7 +17,7 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
-dotenv.config({path: ".env});
+
 app.use("/api/tables", require("./routes/tables"));
 app.use("/api/items", require("./routes/items"));
 app.use("/api/menus", require("./routes/menus"));
