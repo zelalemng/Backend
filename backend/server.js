@@ -12,22 +12,12 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
-const allowedOrigins = 'https://agentpro.onrender.com';
-const corsOptions = {
-    origin: (origin, callback) => {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true)
-        } else {
-            callback(new Error('Not allowed by CORS'))
-        }
-    },
-    credentials: true,
-    optionsSuccessStatus: 200
-} 
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
-
+app.use(cors({
+    origin: ["https://agentpro.onrender.com"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+dotenv.config({path: "../.env});
 app.use("/api/tables", require("./routes/tables"));
 app.use("/api/items", require("./routes/items"));
 app.use("/api/menus", require("./routes/menus"));
