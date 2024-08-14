@@ -25,7 +25,17 @@ app.use("/api/restaurants", require("./routes/restaurants"));
 app.use("/api/users", require("./routes/users"));
 app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/categories', require('./routes/categories'));
-app.use('/', express.static(path.join(__dirname, "public")));
+//app.use('/', express.static(path.join(__dirname, "public")));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+  // Handle React routing, return all requests to React app
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend", "build", "index.html"));
+  });
+} else {
+  app.get("/", (req, res) => res.send("Please set to production"));
+}
 //if (process.env.NODE_ENV === "production") {
   
   //app.get("*", (req, res) =>
