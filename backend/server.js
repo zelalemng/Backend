@@ -22,6 +22,7 @@ app.use("/api/tables", require("./routes/tables"));
 app.use("/api/items", require("./routes/items"));
 app.use("/api/menus", require("./routes/menus"));
 app.use("/api/restaurants", require("./routes/restaurants"));
+app.use('/api/services', require('./routes/serviceRoutes'));
 app.use("/api/users", require("./routes/users"));
 app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/categories', require('./routes/categories'));
