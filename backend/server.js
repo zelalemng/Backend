@@ -7,7 +7,6 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const port = process.env.PORT || 5000;
 console.log(process.env.NODE_ENV)
-const path = require("path");
 connectDB();
 
 const app = express();
