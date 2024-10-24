@@ -10,7 +10,12 @@ console.log(process.env.NODE_ENV)
 connectDB();
 
 const app = express();
-app.options('*', cors()); // Enable preflight
+app.use(cors(corsOptions));
+const corsOptions = {
+  origin: 'https://agentpro.onrender.com',  // Frontend URL
+  credentials: true,  // Allow sending cookies with requests
+  optionsSuccessStatus: 200, // For legacy browser support
+};
 
 app.use(express.json());
 app.use(cookieParser());
@@ -20,10 +25,7 @@ app.use(express.urlencoded({ extended: false }));
     //methods: ["GET", "POST", "PUT", "DELETE"],
     //credentials: true
 //}));
-app.use(cors({
-  origin: 'https://agentpro.onrender.com', // Replace with your front-end domain
-  credentials: true, // If you're using cookies or authorization headers
-}));
+
 
 app.use("/api/tables", require("./routes/tables"));
 app.use("/api/items", require("./routes/items"));
