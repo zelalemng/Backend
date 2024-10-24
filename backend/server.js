@@ -10,13 +10,13 @@ console.log(process.env.NODE_ENV)
 connectDB();
 
 const app = express();
-app.use(cors(corsOptions));
+
 const corsOptions = {
   origin: 'https://agentpro.onrender.com',  // Frontend URL
   credentials: true,  // Allow sending cookies with requests
   optionsSuccessStatus: 200, // For legacy browser support
 };
-
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
