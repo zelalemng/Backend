@@ -1,9 +1,11 @@
 const Order = require('../models/Order');
 const User = require('../models/user');
+
+
 // Get all orders
 exports.getOrders = async (req, res) => {
   try {
-    const orders = await Order.find().populate('category_id');
+    const orders = await Order.find().populate('category_id').populate('name').populate('order_price').populate('serviceName');
     res.json(orders);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -11,7 +13,7 @@ exports.getOrders = async (req, res) => {
 };
 exports.orderId = async (req, res) => {
   try {
-    const order = await Order.findOne({ order_id: req.params.orderId }).populate('category_id');
+    const order = await Order.findOne({ order_id: req.params.orderId }).populate('category_id').populate('name').populate('order_price').populate('serviceName');
     if (!order) {
       return res.status(404).json({ message: 'Order not found' });
     }
@@ -51,3 +53,4 @@ exports.deleteOrder = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
